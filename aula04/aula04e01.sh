@@ -11,4 +11,4 @@ function date_and_name()
     echo "O nome do utilizador é: $(whoami)"
 }
 imprime_msg
-date_and_name
+date_and_name   

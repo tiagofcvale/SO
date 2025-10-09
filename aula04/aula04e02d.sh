@@ -16,6 +16,8 @@ echo "Digite dois números"
 read num1 num2
 comparator $num1 $num2
 
+#comparator "$1" "$2" #Com os argumentos da linha de comando
+
 valor_retorno=$?
 
 if [[ $valor_retorno -eq 0 ]]; then

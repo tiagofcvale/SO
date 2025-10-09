@@ -1,0 +1,7 @@
+1.A variavel $(date) dá-nos o valor do dia e hora do momento, podemos obeter apenas a data a usar $(date "+%d/%m/%Y"). Para o nome do computador existe a variavel chamada $(hostname) e para o nome do utilizador $(whoami) 
+
+1.d)Esta função executa sempre, independentemente do diretório atual
+
+2.a)Esta função tem como argumento a entrada na linha de execução do ficheiro (valor númerico), ela vai dar match no argumento e se for igual a 1, 2 ou 3 da echo no nome (em extenso) do número, qualquer outro escreve "Outro número"
+
+c) A gama de valor de retorno vai até 255 (4bytes)
