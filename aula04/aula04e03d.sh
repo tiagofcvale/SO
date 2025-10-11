@@ -17,4 +17,4 @@ for (( k=${#lista[@]}-1; k>0; k-- )); do #k=comprimento do array
     fi
 done
 
-echo "sorted vals: ${lista[@]}"
+echo sorted vals: ${lista[@]}
