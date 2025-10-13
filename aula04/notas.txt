@@ -18,3 +18,13 @@ unset lista[1] -> elimina o elemento de índice 1 da lista (neste caso = 6)
 unset lista[3] -> elimina o elemento de índice 3 da lista (neste caso = 12)
 Agora a lista tem cardinalidade de apenas 3.
 No final cria outro ciclo for para iterar por cada índice da lista (!lista[@]), e faz echo de cada valor de índice i da lista
+
+c)
+Primeiro, o script vai criar um "Associative array" designado por -A chamado assArray, depois vai colocar na array valores, neste formato assArray[key] = valor, aqui a key funciona como se fosse um índex.
+assArray[Aveiro]=10 (Cria a chave Aveiro com valor = 10)
+assArray[Porto]=NA (Cria a chave Porto com valor = NA)
+assArray+=([Lisboa]=5) (Adiciona à chave Lisboa o valor = 5, como não existia ainda esta chave, o script cria uma)
+Depois vai imprimir os valores da array echo vals ${assarray[@]},
+Vai imprimir o valor do comprimento da array = 3 echo count ${$assArray[@]} 
+Vai imprimir os índices, ou, neste caso, as chaves do array echo index ${!assArray[@]}
+No final imprime o valor associado à chave de Lisboa (imprime 5) echo val Lisboa ${assArray[Lisboa]}
