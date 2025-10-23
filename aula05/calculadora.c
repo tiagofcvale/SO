@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h> // atoi, atof
+#include <stdlib.h> // atoi, atof, strtod
 #include <math.h>   // pow()
 
 int main(int argc, char *argv[]) {
@@ -8,9 +8,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    double valor1 = atof(argv[1]);
+    char* pEnd;
+    double valor1 = strtod(argv[1], &pEnd);
     char op = argv[2][0];
-    double valor2 = atof(argv[3]);
+    double valor2 = strtod(argv[3], &pEnd);
     double res;
 
     switch (op) {
@@ -38,6 +39,6 @@ int main(int argc, char *argv[]) {
             return 1;
     }
 
-    printf("O resultado da tua operação é: %.4f\n", res);
+    printf("O resultado da tua operação é: %.2f\n", res);
     return 0;
 }
