@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
 
-    size_t total = 0;
+    size_t total = 0; // Calcular o espaço a alocar para a string resultado
     for (int i = 1; i < argc; i++ )   {
         if (isalpha(argv[i][0])) { // se começar com número, passa 
             total+= strlen(argv[i]);
