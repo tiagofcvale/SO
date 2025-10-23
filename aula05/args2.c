@@ -7,14 +7,14 @@ int main(int argc, char **argv)
     int i, numChars;
     char *username;
 
-    username = getenv("USER");
+    username = getenv("NEWUSER");
     if(username != NULL)
     {
         printf("This program is being executed by %s\n", username);
     }
     else
     {
-        printf("ERROR: USER not defined\n");
+        printf("ERROR: NEWUSER not defined\n");
         return EXIT_FAILURE;
     }
 

@@ -1,3 +1,6 @@
 1
 a) O programa, utiliza 2 argumentos no main o argc (quantidade de argumentos passados) e *argv[] (array com os valores dos argumentos). E depois dá print de todos os argv(s) de 0 a argc
 e) Na shell, o '*' é utilizado para passar os ficheiros presentes no dirétorio atual, logo ao tentar correr o programa com '*' o programa dá Erro no número de argumentos
+
+2)
+a) O programa útiliza um ponteiro 'username' que é utilizado pela função getenv() para apontar para o valor "USER" que retorna o nome do utilizador, e se este valor não for NULL, imprime o nome retornado. De seguida, para cada argumento passado na execução do programa, vai contar o tamanho dele com strlen() e vai somando ao numChars, no final imprime o resultado.
