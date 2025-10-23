@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 
     size_t total = 0;
     for (int i = 1; i < argc; i++ )   {
-        if (isalpha(argv[i][0])) {
+        if (isalpha(argv[i][0])) { // se começar com número, passa 
             total+= strlen(argv[i]);
         }
     }
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     char* res = malloc(total);
 
     for (int i = 1; i < argc; i++) {
-        if (isalpha(argv[i][0])) {
+        if (isalpha(argv[i][0])) { // se começar com número, passa
             strcat(res, argv[i]);
         }
     }
