@@ -14,6 +14,8 @@ int aleatorio(int min, int max) {
 
 int main(int argc, char *argv[]) {
 
+    int count = 1;
+
     srand(time(NULL)); // Gerar valor aleatorio
 
     int min = atoi(argv[1]);
@@ -26,6 +28,7 @@ int main(int argc, char *argv[]) {
     scanf("%d", &input);
 
     while (input != number) {
+        count++;
         printf("Errado! ");
         if (input>number){
             printf("Alto! Tente novamente: ");
@@ -35,7 +38,7 @@ int main(int argc, char *argv[]) {
         scanf("%d", &input);
     }
 
-    printf("PARBÉNS! Acertaste o valor %d!\n",number);
+    printf("PARBÉNS! Acertaste o valor %d, em %d tentativas\n",number,count);
 
     return 0;
 }
