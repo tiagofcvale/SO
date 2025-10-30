@@ -1,0 +1,12 @@
+1.
+a) O programa começa por definir um máximo de linhas para ler de um ficheiro (80).
+Depois cria uma variável FILE* (fp), e começa por garantir que foi passado exatamente 1 argumento da linha de comandos.
+Depois abre o ficheiro com a função fopen(<filename>, "r") (r de read), depois para cada linha do ficheiro, até (no máximo LINEMAXSIZE), vai imprimir linha a linha no terminal.
+No final fecha a file com fclose().
+
+b) A solução para este problema é, primeiramente, alterar o número máximo de argumentos que se pode passar, para isto, mudamos o != do primeiro if para <,
+depois vamos fazer um ciclo for a partir de i = 1 até argc, mandamos os comandos para abrir a file e o while para dentro do loop e, no fopes(argv[1],"r") mudamos o 1 para o i.
+
+c) A solução para este problema é simples, basta inicializar uma variavel (int), imprimir esse valor no mesmo printf() em que imprimia a linha, e de seguida incrementar esse valor.
+
+d) Este comportamento ocorre porcausa do limitador, LINEMAXSIZE = 80, quando este valor é excedido ele simplesmente passa para a próxima iteração do while. para resolver este problema, basta aumentar o valor de LINEMAXSIZE
