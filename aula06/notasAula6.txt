@@ -10,3 +10,8 @@ depois vamos fazer um ciclo for a partir de i = 1 até argc, mandamos os comando
 c) A solução para este problema é simples, basta inicializar uma variavel (int), imprimir esse valor no mesmo printf() em que imprimia a linha, e de seguida incrementar esse valor.
 
 d) Este comportamento ocorre porcausa do limitador, LINEMAXSIZE = 80, quando este valor é excedido ele simplesmente passa para a próxima iteração do while. para resolver este problema, basta aumentar o valor de LINEMAXSIZE
+
+2.
+a) O programa começa por determinar quantos números foram passados como argumento (numSize = argc -1),
+de seguida, alocar memória para o array dos números a utilizar o malloc e guardar os valores nesse array. Depois usa a função qsort() para ordenar a lista usando a função compareInts.
+No final imprime a lista ordenada, linha a linha.
