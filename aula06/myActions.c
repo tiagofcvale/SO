@@ -10,7 +10,15 @@
 int main(int argc, char *argv[])
 {
     char text[1024];
-    
+    FILE *fp = NULL;
+
+    fp = fopen("command.log", "w");
+
+    if (fp == NULL) {
+        perror("Erro ao abrir ou criar o arquivo");
+        return EXIT_FAILURE;
+    }
+
     do
     {
         printf("Command: ");
@@ -25,9 +33,13 @@ int main(int argc, char *argv[])
            printf("---------------------------------\n");
            system(text);
            printf("---------------------------------\n");
+           fprintf(fp, "Command to be executed: %s\n", text);
+           fprintf(fp, "---------------------------------");
+           fprintf(fp, system(text));
+           fprintf(fp, "---------------------------------");
         }
     } while(strcmp(text, "end"));
-
+    fclose(fp);
     printf("-----------The End---------------\n");
 
     return EXIT_SUCCESS;
