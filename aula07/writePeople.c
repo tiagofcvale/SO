@@ -36,11 +36,22 @@ int main (int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+    int quantidade = 0;
+    printf("Quantas pessoas pretende adicionar? \n");
+    scanf("%d",&quantidade);
+
     /* Write 10 itens on a file */
-    for(i = 0 ; i < 10 ; i++)
+    for(i = 1 ; i < quantidade + 1 ; i++)
     {    
-        p.age = p.age+1;
-        p.height = p.height+0.03;
+        printf("Nome da %d pessoa: \n",i);
+        scanf("%s",p.name);
+
+        printf("Idade da %d pessoa: \n",i);
+        scanf("%d",&p.age);
+
+        printf("Altura da %d pessoa: \n",i);
+        scanf("%le",&p.height);
+
         fwrite(&p, sizeof(Person), 1, fp);
     }
 
