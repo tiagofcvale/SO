@@ -43,13 +43,13 @@ int main (int argc, char *argv[])
     /* Write 10 itens on a file */
     for(i = 1 ; i < quantidade + 1 ; i++)
     {    
-        printf("Nome da %d pessoa: \n",i);
+        printf("Nome da %da pessoa: \n",i);
         scanf("%s",p.name);
 
-        printf("Idade da %d pessoa: \n",i);
+        printf("Idade da %da pessoa: \n",i);
         scanf("%d",&p.age);
 
-        printf("Altura da %d pessoa: \n",i);
+        printf("Altura da %da pessoa: \n",i);
         scanf("%le",&p.height);
 
         fwrite(&p, sizeof(Person), 1, fp);
