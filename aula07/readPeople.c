@@ -36,8 +36,7 @@ int main (int argc, char *argv[])
     }
 
     /* read all the itens of the file */
-    while(fread(&p, sizeof(Person), 1, fp) == 1)
-    {
+    while(fread(&p, sizeof(Person), 1, fp) == 1) {
         printPersonInfo(&p);
     }
 
