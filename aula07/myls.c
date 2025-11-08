@@ -4,7 +4,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
-
+#include <getopt.h>
 
 int hasExtension(const char *filename, const char *ext) {
     const char *dot = strrchr(filename, '.');
@@ -56,13 +56,20 @@ void listDir(const char *dirname, int showFiles, int showDirs, int filterExt, co
 
 int main(int argc, char *argv[]) {
     
-    int opt, filterExt;
+    int opt, filterExt = 0;
 
     char ext[32] = "";
     int showFiles = 0;
     int showDirs = 0;
+    int option_index = 0;
 
-    while ((opt = getopt(argc, argv, "fde:")) != -1) {
+    struct option long_options[] = {
+            {   "file",       no_argument, 0,  'f'  },
+            {    "dir",       no_argument, 0,  'd'  },
+            {    "ext", required_argument, 0,  'e'  },
+        };
+        
+    while ((opt = getopt_long(argc, argv, "fde:", long_options, &option_index)) != -1) {
         switch (opt)
         {
         case 'f':
