@@ -16,5 +16,10 @@ int main(int argc, char *argv[])
     printf("Quem sou eu?\nApós o fork: PID = %d, PPID = %d, retorno do fork = %d\n",
            getpid(), getppid(), ret);
 
+    if (ret > 0) {
+        printf("PAI\n");
+    } else {
+        printf("FILHO\n");
+    }
     return EXIT_SUCCESS;
 }
