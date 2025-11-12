@@ -5,6 +5,7 @@
 int main(int argc, char *argv[])
 {
     printf("Pai (antes do fork): PID = %u, PPID = %u\n", getpid(), getppid());
+    
     switch (fork())
     {
       case -1: /* fork falhou */
