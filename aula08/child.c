@@ -6,8 +6,8 @@ int main(int argc, char *argv[])
 {
     printf("Filho: PID = %d, PPID = %d\n", getpid(), getppid());
     sleep(3);
-    // printf("Filho: PID = %d, PPID = %d\n", getpid(), getppid());
-    system("ls -l");
+    printf("Filho: PID = %d, PPID = %d\n", getpid(), getppid());
+    //system("ls -l");
 
     return EXIT_SUCCESS;
 }
