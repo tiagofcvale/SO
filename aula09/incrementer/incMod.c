@@ -54,11 +54,11 @@ void vInc (void)
     val = value;
 
     /* generate time delay 1 */
-    delay (SMALL);
+    delay (BIG);
 
     /* increment the local value and store it back */
     value = val + 1;
 
     /* generate time delay 2 */
-    delay (SMALL);
+    delay (BIG);
 }
