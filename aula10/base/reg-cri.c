@@ -17,8 +17,13 @@
 #include <getopt.h>
 #include <libgen.h>
 #include <math.h>
+#include "semaphore.h"
+#include <sys/sem.h>
+
+#define SEMKEY 0x200
 
 #include "sharedMemory.h"
+#include "semaphore.h"
 
 #define SHMKEY 0x100
 #define NPROC      4
@@ -96,28 +101,51 @@ static int destroy(void)
 {
     /* ganha acesso à memória partilhada */
     int shmid = shmemConnect (SHMKEY);
-    if (shmid == -1) { 
+    if (shmid == -1) {
         perror ("shmemConnect");
         return EXIT_FAILURE;
     }
 
-    /* destroi-a */
-    if (shmemDestroy (shmid) == -1) { 
+    int semgid = semget((key_t)SEMKEY, 1, 0600);
+    if (semgid != -1) {
+        semDestroy(semgid);
+    }
+
+    printf("[DEBUG] Tentando destruir a memória partilhada...\n");
+    if (shmemDestroy (shmid) == -1) {
         perror ("shmemDestroy");
+        printf("[DEBUG] Falha ao destruir a memória partilhada.\n");
         return EXIT_FAILURE;
     }
+    printf("[DEBUG] Memória partilhada destruída com sucesso.\n");
     return EXIT_SUCCESS;
 }
 
 static int iter(int niter)
 {
     int i, j, auxcnt;
+    int semgid;
+
 
     /* ganha acesso à memória partilhada */
     int shmid = shmemConnect (SHMKEY);
     if (shmid == -1) { 
         perror ("shmemConnect");
         return EXIT_FAILURE;
+    }
+
+    /* cria o semáforo se não existir, sem bloquear */
+    semgid = semget((key_t)SEMKEY, 1, 0600);
+    if (semgid == -1) {
+        semgid = semCreate(SEMKEY, 1);
+        if (semgid == -1) {
+            perror("semCreate");
+            return EXIT_FAILURE;
+        }
+        if (semUp(semgid, 0) == -1) {
+            perror("semUp (inicialização)");
+            return EXIT_FAILURE;
+        }
     }
 
     /* anexa a memória partilhada ao espaço de endereçamento próprio */
@@ -128,35 +156,31 @@ static int iter(int niter)
     }
 
     /* lança processos incrementadores e espera pelo seu termo */
-    for (i = 0; i < NPROC; i++)
-    { 
-        switch (fork ())
-        { 
-            case -1: perror ("fork");
-                 return EXIT_FAILURE;
-
+    for (i = 0; i < NPROC; i++) {
+        switch (fork ()) {
+            case -1:
+                perror ("fork");
+                return EXIT_FAILURE;
             case 0:  // processo incrementador
-                 for (j = 0; j < niter; j++)
-                 { /* faz cópia do contador em mem. part. */
-                     auxcnt = *cntp;
-
-                     /* generate a time delay */
-                     delay (BIG);
-
-                     /* incrementa a cópia e armazena-a em mem. part. */
-                     *cntp = auxcnt + 1;
-
-                     /* generate a time delay */
-                     delay (BIG);
-                 }
-
-                 /* desanexa a memória partilhada do espaço de endereçamento próprio */
-                 if (shmemDettach (cntp) == -1) { 
-                     perror ("incrementador - shmemDettach");
-                     return EXIT_FAILURE;
-                 }
-
-                 return EXIT_SUCCESS;
+                for (j = 0; j < niter; j++) {
+                    if (semDown(semgid, 0) == -1) {
+                        perror("semDown");
+                        return EXIT_FAILURE;
+                    }
+                    auxcnt = *cntp;
+                    delay (BIG);
+                    *cntp = auxcnt + 1;
+                    delay (BIG);
+                    if (semUp(semgid, 0) == -1) {
+                        perror("semUp");
+                        return EXIT_FAILURE;
+                    }
+                }
+                if (shmemDettach (cntp) == -1) {
+                    perror ("incrementador - shmemDettach");
+                    return EXIT_FAILURE;
+                }
+                return EXIT_SUCCESS;
         }
     }
 

@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <sys/shm.h>
 
-/** \brief access permission: user r-w */
+/** \brief access permission: user rw- */
 #define  MASK           0600
 
 /**
