@@ -111,13 +111,6 @@ static int destroy(void)
         semDestroy(semgid);
     }
 
-    printf("[DEBUG] Tentando destruir a memória partilhada...\n");
-    if (shmemDestroy (shmid) == -1) {
-        perror ("shmemDestroy");
-        printf("[DEBUG] Falha ao destruir a memória partilhada.\n");
-        return EXIT_FAILURE;
-    }
-    printf("[DEBUG] Memória partilhada destruída com sucesso.\n");
     return EXIT_SUCCESS;
 }
 
