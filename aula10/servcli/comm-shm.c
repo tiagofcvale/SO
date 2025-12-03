@@ -4,6 +4,8 @@
  * Author    : Artur Pereira <artur@ua.pt>
  */
 
+ #define _DEFAULT_SOURCE
+
 #ifndef _SVID_SOURCE
 #define _SVID_SOURCE
 #endif
