@@ -6,7 +6,7 @@ LD = gcc
 
 LDFLAGS = -lm
 
-TARGETS = server client client2
+TARGETS = server client client2 tarefa_cli tarefa_srv
 
 .PHONY: all clean cleanall
 
