@@ -16,13 +16,13 @@ int main(int argc, char *argv[])
        case -1:
               perror(argv[0]);
               return 1;
-       case 0:
+       case 0: // FILHO
               close(fdp[0]);
-              dup2(fdp[1],1);
+              dup2(fdp[1],2); // File descriptor 2 (fprintf)
               close(fdp[1]);
-              printf("Hello Dad!");
+              fprintf(stderr, "Hello Dad!");
               break;
-       default:
+       default: // PAI
               close(fdp[1]);
               nr = read(fdp[0],buf,1024);
               printf("Parent: %.*s\n",nr,buf);
