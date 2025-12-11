@@ -20,7 +20,12 @@ int main(int argc, char *argv[])
               dup2(fdp[1],1);
               close(fdp[1]);
               printf("Hello Dad!\nHow are you?");
-              break;
+              
+              execlp("ls", "ls", NULL);
+
+              perror("exec ls");
+              return 1;
+              
        default:
               close(fdp[1]);
               dup2(fdp[0],0);
