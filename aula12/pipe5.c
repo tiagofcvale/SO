@@ -1,3 +1,4 @@
+
 #include <unistd.h>
 #include <stdio.h>
 
@@ -18,13 +19,14 @@ int main(int argc, char *argv[])
               close(fdp[0]);
               dup2(fdp[1],1);
               close(fdp[1]);
-              execlp("ls","ls",NULL);
+              execlp("cat", "cat", "/etc/passwd", NULL);
               break;
        default:
               close(fdp[1]);
               dup2(fdp[0],0);
               close(fdp[0]);
-              execlp("wc","wc","-l",NULL);
+              execlp("grep", "grep", "sop", NULL);
+              break;
    }
    return 0;
 }
