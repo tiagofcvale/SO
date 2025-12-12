@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
 
-    if(mkfifo("myfifo1",0600)!=0) {
+    if(mkfifo("myfifo1",0666)!=0) {
        perror(argv[0]);
        return 1;
     }
