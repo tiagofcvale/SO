@@ -6,14 +6,14 @@ int main(int argc, char *argv[])
     FILE *fp;
     char buf[1024];
 
-    fp = popen("ls -l", "r");
+    fp = popen("gzip > ficheiroGZ.gz", "w"); // "w" abrir o popen para escrita
     if(fp==NULL) {
-        perror(argv[0]);
+        perror("Erro ao abrir o pipe");
         return 1;
     }
 
-    while(fscanf(fp,"%[^\n]%*c",buf)>0) {
-        printf("frompipe: %s\n",buf);
+    while(fgets(buf, sizeof(buf), stdin)) { // enquanto receber texto (stdin) vai escrever na file
+        fprintf(fp, "%s", buf);
     }
  
     fclose(fp);
